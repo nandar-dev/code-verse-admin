@@ -1,0 +1,24 @@
+@import "./colors.scss";
+@import "./layout.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "element-icons";
+  font-weight: normal;
+  font-style: normal;
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/element-ui/2.13.2/theme-chalk/fonts/element-icons.woff");
+  font-display: swap;
+}
+
+body {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #000;
+  margin: 0;
+}
