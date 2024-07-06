@@ -13,14 +13,16 @@
               :type="passwordFieldType"
               placeholder="Password">
               <template #append>
-                <el-button class="password-visibility" @click="togglePasswordVisibility" type="text">
+                <el-button
+                  class="password-visibility"
+                  @click="togglePasswordVisibility"
+                  type="text">
                   <Icon
                     :icon="
                       showPassword ? 'mdi:eye-outline' : 'mdi:eye-off-outline'
-                    " 
+                    "
                     height="15.5"
-                    width="15.5"
-                    />
+                    width="15.5" />
                 </el-button>
               </template>
             </el-input>
@@ -28,6 +30,13 @@
           <el-form-item>
             <el-button type="primary" @click="handleSubmit">Login</el-button>
           </el-form-item>
+
+          <el-link
+            class="forgot-password"
+            type="primary"
+            @click="$router.push('/forgot-pass')"
+            >Forgot Password?</el-link
+          >
         </el-form>
       </el-card>
     </div>
@@ -51,7 +60,7 @@ const passwordFieldType = computed(() =>
 const handleSubmit = () => {
   console.log("Username:", username.value);
   console.log("Password:", password.value);
-  router.push("/")
+  router.push("/");
 };
 
 const togglePasswordVisibility = () => {
@@ -59,11 +68,8 @@ const togglePasswordVisibility = () => {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .login-content {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
   background: linear-gradient(135deg, #6e8efb, #a777e3);
   height: 100vh;
   display: flex;
@@ -86,7 +92,7 @@ const togglePasswordVisibility = () => {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background: #fff;
 
-  button{
+  button {
     width: 100%;
   }
 
@@ -95,7 +101,7 @@ const togglePasswordVisibility = () => {
     text-align: center;
   }
 
-  .password-visibility{
+  .password-visibility {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -105,6 +111,8 @@ const togglePasswordVisibility = () => {
     margin-bottom: 20px;
   }
 
- 
+  .forgot-password {
+    float: right;
+  }
 }
 </style>

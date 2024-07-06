@@ -33,6 +33,7 @@ onUnmounted(() => {
 <template>
   <div class="app-header">
     <Icon
+      class="burger-menu"
       @click="setMenuCollapse(!store.menuSideBarCollapse)"
       icon="ic:round-menu"
       width="25"
@@ -82,7 +83,11 @@ onUnmounted(() => {
   align-items: center;
   justify-content: space-between;
   padding: 0 10px;
+  .burger-menu {
+  cursor: pointer;
 }
+}
+
 .avatar-name {
   display: flex;
   align-items: center;

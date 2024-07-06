@@ -22,8 +22,22 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/LoginView.vue'),
-   
+      component: () => import('../views/LoginView.vue')
+    },
+    {
+      path: '/forgot-pass',
+      name: 'forgot-pass',
+      component: () => import('../views/ForgotPassword.vue')
+    },
+    {
+      path: '/otp',
+      name: 'otp',
+      component: () => import('../views/OTP.vue'),
+    },
+    {
+      path: '/reset-pass',
+      name: 'resetpass',
+      component: () => import('../views/ResetPassword.vue'),
     }
   ]
 })
