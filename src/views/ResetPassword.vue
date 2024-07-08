@@ -1,3 +1,29 @@
+<script setup>
+import { ref, computed } from "vue";
+import { Icon } from "@iconify/vue";
+
+const newPassword = ref("");
+const confirmPassword = ref("");
+const showNewPassword = ref(false);
+const showConfirmPassword = ref(false);
+
+const newPasswordFieldType = computed(() =>
+  showNewPassword.value ? "text" : "password"
+);
+
+const confirmPasswordFieldType = computed(() =>
+  showConfirmPassword.value ? "text" : "password"
+);
+
+const toggleNewPasswordVisibility = () => {
+  showNewPassword.value = !showNewPassword.value;
+};
+
+const toggleConfirmPasswordVisibility = () => {
+  showConfirmPassword.value = !showConfirmPassword.value;
+};
+</script>
+
 <template>
   <div class="reset-pass-content">
     <div class="reset-pass-wrapper">
@@ -55,33 +81,7 @@
   </div>
 </template>
 
-<script setup>
-import { ref, computed } from "vue";
-import { Icon } from "@iconify/vue";
-
-const newPassword = ref("");
-const confirmPassword = ref("");
-const showNewPassword = ref(false);
-const showConfirmPassword = ref(false);
-
-const newPasswordFieldType = computed(() =>
-  showNewPassword.value ? "text" : "password"
-);
-
-const confirmPasswordFieldType = computed(() =>
-  showConfirmPassword.value ? "text" : "password"
-);
-
-const toggleNewPasswordVisibility = () => {
-  showNewPassword.value = !showNewPassword.value;
-};
-
-const toggleConfirmPasswordVisibility = () => {
-  showConfirmPassword.value = !showConfirmPassword.value;
-};
-</script>
-
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .reset-pass-content {
   height: 100vh;
   display: flex;

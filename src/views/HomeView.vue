@@ -1,3 +1,16 @@
+
+<script  setup>
+import {
+  Check,
+  Delete,
+  Edit,
+  Message,
+  Search,
+  Star,
+} from '@element-plus/icons-vue'
+</script>
+
+
 <template>
   <h1>Home</h1>
   <div class="mb-4">
@@ -36,14 +49,3 @@
     <el-button type="danger" :icon="Delete" circle />
   </div>
 </template>
-
-<script  setup>
-import {
-  Check,
-  Delete,
-  Edit,
-  Message,
-  Search,
-  Star,
-} from '@element-plus/icons-vue'
-</script>

@@ -1,3 +1,28 @@
+<script setup>
+import { ref, computed } from "vue";
+import { Icon } from "@iconify/vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const username = ref("");
+const password = ref("");
+const showPassword = ref(false);
+
+const passwordFieldType = computed(() =>
+  showPassword.value ? "text" : "password"
+);
+
+const handleSubmit = () => {
+  console.log("Username:", username.value);
+  console.log("Password:", password.value);
+  router.push("/");
+};
+
+const togglePasswordVisibility = () => {
+  showPassword.value = !showPassword.value;
+};
+</script>
+
 <template>
   <div class="login-content">
     <div class="login-wrapper">
@@ -43,32 +68,7 @@
   </div>
 </template>
 
-<script setup>
-import { ref, computed } from "vue";
-import { Icon } from "@iconify/vue";
-import { useRouter } from "vue-router";
-
-const router = useRouter();
-const username = ref("");
-const password = ref("");
-const showPassword = ref(false);
-
-const passwordFieldType = computed(() =>
-  showPassword.value ? "text" : "password"
-);
-
-const handleSubmit = () => {
-  console.log("Username:", username.value);
-  console.log("Password:", password.value);
-  router.push("/");
-};
-
-const togglePasswordVisibility = () => {
-  showPassword.value = !showPassword.value;
-};
-</script>
-
-<style scoped lang="scss">
+<style  lang="scss" scoped>
 .login-content {
   background: linear-gradient(135deg, #6e8efb, #a777e3);
   height: 100vh;

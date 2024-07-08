@@ -1,3 +1,10 @@
+<script setup>
+import { ref } from "vue";
+
+const otp = ref("");
+</script>
+
+
 <template>
   <div class="otp-content">
     <div class="otp-wrapper">
@@ -16,13 +23,8 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
 
-const otp = ref("");
-</script>
-
-<style scoped lang="scss">
+<style  lang="scss" scoped>
 .otp-content {
   height: 100vh;
   display: flex;

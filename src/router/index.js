@@ -20,6 +20,15 @@ const router = createRouter({
       },
     },
     {
+      path: '/payment-method',
+      name: 'payment-method',
+
+      component: () => import('../views/PaymentMethodView.vue'),
+      meta: {
+        layout: "admin",
+      },
+    },
+    {
       path: '/login',
       name: 'login',
       component: () => import('../views/LoginView.vue')

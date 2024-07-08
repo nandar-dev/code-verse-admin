@@ -1,3 +1,9 @@
+<script setup>
+import { ref } from "vue";
+
+const email = ref("");
+</script>
+
 <template>
   <div class="forgot-pass-content">
     <div class="forgot-pass-wrapper">
@@ -21,13 +27,7 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
-
-const email = ref("");
-</script>
-
-<style scoped lang="scss">
+<style  lang="scss" scoped>
 .forgot-pass-content {
   height: 100vh;
   display: flex;
@@ -65,7 +65,6 @@ const email = ref("");
   .button {
     margin-top: 30px;
     width: 100%;
-
   }
 }
 </style>

@@ -3,12 +3,14 @@ import { Icon } from "@iconify/vue";
 import { useAppStore } from "@/store";
 import { useRouter } from "vue-router";
 import { onMounted, onUnmounted, ref } from "vue";
+import ProfileDialog from "@/views/components/ProfileDialog.vue";
 
 const router = useRouter();
 const store = useAppStore();
 
 const logOut = () => router.push("/login");
 
+const showProfileDialog = ref(false);
 const screenWidth = ref(window.innerWidth);
 
 const setMenuCollapse = (value) => store.setMenuSideBarCollapse(value);
@@ -55,7 +57,7 @@ onUnmounted(() => {
         </div>
 
         <div class="avatar-menu">
-          <div class="menu-item">
+          <div @click="showProfileDialog = true" class="menu-item">
             <Icon
               class="icon"
               icon="iconamoon:profile"
@@ -73,6 +75,7 @@ onUnmounted(() => {
       </template>
     </el-popover>
   </div>
+  <ProfileDialog :open="showProfileDialog"  @dialog-closed="showProfileDialog = false"/>
 </template>
 
 <style lang="scss" scoped>
@@ -84,8 +87,8 @@ onUnmounted(() => {
   justify-content: space-between;
   padding: 0 10px;
   .burger-menu {
-  cursor: pointer;
-}
+    cursor: pointer;
+  }
 }
 
 .avatar-name {
