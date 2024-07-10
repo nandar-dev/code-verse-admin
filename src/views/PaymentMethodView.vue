@@ -1,25 +1,6 @@
-<template>
-  <el-card>
-    <el-table :data="tableData" border style="width: 100%">
-      <el-table-column fixed prop="date" label="Date" width="150" />
-      <el-table-column prop="name" label="Name" width="120" />
-      <el-table-column prop="state" label="State" width="120" />
-      <el-table-column prop="city" label="City" width="120" />
-      <el-table-column prop="address" label="Address" width="600" />
-      <el-table-column prop="zip" label="Zip" width="120" />
-      <el-table-column fixed="right" label="Operations" min-width="120">
-        <template #default>
-          <el-button link type="primary" size="small" @click="handleClick">
-            Detail
-          </el-button>
-          <el-button link type="primary" size="small">Edit</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-  </el-card>
-</template>
-
-<script lang="ts" setup>
+<script setup>
+import { ref } from "vue";
+import PaymentMethodDialog from "./components/PaymentMethodDialog.vue";
 const handleClick = () => {
   console.log("click");
 };
@@ -62,4 +43,34 @@ const tableData = [
     tag: "Office",
   },
 ];
+const showPaymentDialog = ref(false);
 </script>
+
+<template>
+  <div style="margin-bottom: 20px; text-align: right">
+    <el-button type="primary" size="small" @click="showPaymentDialog = true"
+      >Add Payment Method</el-button
+    >
+  </div>
+  <el-card>
+    <el-table :data="tableData" border style="width: 100%">
+      <el-table-column fixed prop="date" label="Date" width="150" />
+      <el-table-column prop="name" label="Name" width="120" />
+      <el-table-column prop="state" label="State" width="120" />
+      <el-table-column prop="city" label="City" width="120" />
+      <el-table-column prop="address" label="Address" width="600" />
+      <el-table-column prop="zip" label="Zip" width="120" />
+      <el-table-column fixed="right" label="Operations" min-width="120">
+        <template #default>
+          <el-button link type="primary" size="small" @click="handleClick">
+            Detail
+          </el-button>
+          <el-button link type="primary" size="small">Edit</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+  </el-card>
+  <PaymentMethodDialog
+    :open="showPaymentDialog"
+    @dialog-closed="() => (showPaymentDialog = false)" />
+</template>

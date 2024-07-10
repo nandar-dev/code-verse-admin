@@ -1,6 +1,5 @@
 <script setup>
 import { ref, watch, defineEmits, defineProps } from "vue";
-import { Plus } from "@element-plus/icons-vue";
 
 const props = defineProps({
   open: {
@@ -12,7 +11,29 @@ const props = defineProps({
 const emit = defineEmits(["dialog-closed"]);
 
 const dialogVisible = ref(props.open);
-const formLabelWidth = "70px";
+
+const options = [
+  {
+    value: "Option1",
+    label: "Option1",
+  },
+  {
+    value: "Option2",
+    label: "Option2",
+  },
+  {
+    value: "Option3",
+    label: "Option3",
+  },
+  {
+    value: "Option4",
+    label: "Option4",
+  },
+  {
+    value: "Option5",
+    label: "Option5",
+  },
+];
 
 watch(
   () => props.open,
@@ -22,29 +43,16 @@ watch(
 );
 
 const closeDialog = () => {
-  dialogVisible.value = false;
   emit("dialog-closed");
 };
 
 const form = ref({
-  name: "",
-  email: "",
-  password: "",
-  avatar: "",
+  bank_name: "",
+  account_name: "",
+  account_number: "",
 });
 
 const formRef = ref(null);
-
-// const handleAvatarChange = (file) => {
-//   const reader = new FileReader();
-//   reader.onload = (e) => {
-//     imageUrl.value = e.target.result;
-//     form.value.avatar = e.target.result;
-//   };
-//   reader.readAsDataURL(file.raw);
-// };
-
-// const imageUrl = ref("");
 </script>
 
 <template>
@@ -52,29 +60,23 @@ const formRef = ref(null);
     :close-on-click-modal="false"
     @closed="closeDialog"
     v-model="dialogVisible"
-    title="Profile"
+    title="Add Payment Method"
     width="500">
     <el-form label-position="top" class="form" :model="form" ref="formRef">
-      <el-form-item>
-        <el-upload
-          class="avatar-uploader"
-          :show-file-list="false"
-          action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-          list-type="picture-card"
-          :on-preview="handlePictureCardPreview"
-          :on-remove="handleRemove">
-          <el-icon><Plus /></el-icon>
-        </el-upload>
+      <el-form-item label="Bank Name">
+        <el-select v-model="form.bank_name" placeholder="Select" >
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value" />
+        </el-select>
       </el-form-item>
-
-      <el-form-item label="Name">
-        <el-input v-model="form.name"></el-input>
+      <el-form-item label="Account Name">
+        <el-input v-model="form.account_name"></el-input>
       </el-form-item>
-      <el-form-item label="Email">
-        <el-input v-model="form.email"></el-input>
-      </el-form-item>
-      <el-form-item label="Password">
-        <el-input v-model="form.password" show-password></el-input>
+      <el-form-item label="Account Number">
+        <el-input v-model="form.account_number"></el-input>
       </el-form-item>
     </el-form>
     <template #footer>
