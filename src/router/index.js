@@ -5,16 +5,16 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: () => import('../views/HomeView.vue'),
+      name: 'dashboard',
+      component: () => import('../views/DashboardView.vue'),
       meta: {
         layout: "admin",
       },
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('../views/AboutView.vue'),
+      path: '/course',
+      name: 'course',
+      component: () => import('../views/CourseView.vue'),
       meta: {
         layout: "admin",
       },
@@ -22,8 +22,31 @@ const router = createRouter({
     {
       path: '/payment-method',
       name: 'payment-method',
-
       component: () => import('../views/PaymentMethodView.vue'),
+      meta: {
+        layout: "admin",
+      },
+    },
+    {
+      path: '/purchase',
+      name: 'purchase',
+      component: () => import('../views/PurchaseView.vue'),
+      meta: {
+        layout: "admin",
+      },
+    },
+    {
+      path: '/community',
+      name: 'community',
+      component: () => import('../views/Community.vue'),
+      meta: {
+        layout: "admin",
+      },
+    },
+    {
+      path: '/community/:id',
+      name: 'threaddetail',
+      component: () => import('../views/components/ThreadDetail.vue'),
       meta: {
         layout: "admin",
       },

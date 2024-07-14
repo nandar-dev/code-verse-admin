@@ -12,7 +12,6 @@ const props = defineProps({
 const emit = defineEmits(["dialog-closed"]);
 
 const dialogVisible = ref(props.open);
-const formLabelWidth = "70px";
 
 watch(
   () => props.open,

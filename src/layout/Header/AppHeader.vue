@@ -81,12 +81,13 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 .app-header {
   height: $appHeaderHeight;
-  border-bottom: solid 1px $mainBorderColor;
+  //  border-bottom: solid 1px $mainBorderColor;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 10px;
-  .burger-menu {
+  z-index: 10;
+    .burger-menu {
     cursor: pointer;
   }
 }

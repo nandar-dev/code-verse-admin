@@ -1,7 +1,6 @@
 <script setup>
 import AppSideBar from "./SideBar/AppSideBar.vue";
 import AppHeader from "./Header/AppHeader.vue";
-
 </script>
 
 <template>
@@ -10,6 +9,7 @@ import AppHeader from "./Header/AppHeader.vue";
       <AppSideBar />
       <div class="app-main">
         <AppHeader />
+
         <main class="app-main-content">
           <el-main>
             <router-view />
@@ -29,6 +29,7 @@ import AppHeader from "./Header/AppHeader.vue";
       width: 100%;
       box-sizing: border-box;
       overflow: hidden;
+      background: $appBackgroundColor;
 
       .app-main-content {
         width: 100%;

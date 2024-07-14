@@ -47,18 +47,27 @@ export default {
       @open="handleOpen"
       @close="handleClose">
       <el-menu-item @click="onSelectItem('/', '1')" index="1">
-        <el-icon><Icon icon="mdi:location" /></el-icon>
-        <template #title>Home</template>
+        <el-icon><Icon icon="mdi:view-dashboard-outline" /></el-icon>
+        <template #title>Dashboard</template>
       </el-menu-item>
 
-      <el-menu-item @click="onSelectItem('/about', '2')" index="2">
-        <el-icon><Icon icon="mdi:location" /></el-icon>
-        <template #title>About</template>
+      <el-menu-item @click="onSelectItem('/course', '2')" index="2">
+        <el-icon><Icon icon="mdi:google-classroom" /></el-icon>
+        <template #title>Course</template>
       </el-menu-item>
 
-      <el-menu-item @click="onSelectItem('/payment-method', '3')" index="3">
-        <el-icon><Icon icon="mdi:location" /></el-icon>
+      <el-menu-item @click="onSelectItem('/purchase', '3')" index="3">
+        <el-icon><Icon icon="mdi:file-check-outline" /></el-icon>
+        <template #title>Purchase</template>
+      </el-menu-item>
+
+      <el-menu-item @click="onSelectItem('/payment-method', '4')" index="4">
+        <el-icon><Icon icon="mdi:credit-card-outline" /></el-icon>
         <template #title>Payment Method</template>
+      </el-menu-item>
+      <el-menu-item @click="onSelectItem('/community', '5')" index="5">
+        <el-icon><Icon icon="mdi:account-group" /></el-icon>
+        <template #title>Community</template>
       </el-menu-item>
     </el-menu>
   </aside>
@@ -70,5 +79,10 @@ export default {
   &:not(.el-menu--collapse) {
     width: $sideMenuWidth;
   }
+}
+
+.el-menu {
+  border: none;
+  box-shadow: 0 0 80px 50px rgba(126, 131, 141, 0.05);
 }
 </style>

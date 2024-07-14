@@ -1,34 +1,34 @@
 <script setup>
 import { ref } from "vue";
-import PaymentMethodDialog from "./components/PaymentMethodDialog.vue";
+import CourseDialog from "./components/CourseDialog.vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 
 const tableData = [
   {
-    bank_name: "KBZ Bank",
-    account_name: "MR California",
-    account_number: "XXXXXXXXXX2828",
+    course_name: "HTMl, CSS and Javascript Basic",
+    price: "200,000 MMK",
+    course_content: 40,
   },
   {
-    bank_name: "CB Bank",
-    account_name: "MR Robert",
-    account_number: "XXXXXXXXXX2828",
+    course_name: "Flutter Advanced",
+    price: "300,000 MMK",
+    course_content: 40,
   },
   {
-    bank_name: "AYA Bank",
-    account_name: "MR Washinton",
-    account_number: "XXXXXXXXXX2828",
+    course_name: "Node js + Express + MongoDb",
+    price: "250,000 MMK",
+    course_content: 40,
   },
   {
-    bank_name: "Yoma Bank",
-    account_name: "MR Jhon",
-    account_number: "XXXXXXXXXX2828",
+    course_name: "Vue Zero to Hero",
+    price: "350,000 MMK",
+    course_content: 40,
   },
 ];
-const showPaymentDialog = ref(false);
+const showCourseDialog = ref(false);
 
 const deleteHandler = () => {
-  ElMessageBox.confirm("Are you sure want to delete?", "Delete Payment Method!", {
+  ElMessageBox.confirm("Are you sure want to delete?", "Delete Course!", {
     confirmButtonText: "OK",
     cancelButtonText: "Cancel",
     type: "warning",
@@ -45,24 +45,24 @@ const deleteHandler = () => {
 <template>
   <div
     style="display: flex; justify-content: space-between; margin-bottom: 15px">
-    <h2>Payment Method</h2>
+    <h2>Courses</h2>
 
-    <el-button type="primary" @click="showPaymentDialog = true"
-      >Add Payment Method</el-button
+    <el-button type="primary" @click="showCourseDialog = true"
+      >Add Course</el-button
     >
   </div>
   <el-card shadow="never">
     <el-table :data="tableData" border style="width: 100%">
-      <el-table-column fixed prop="bank_name" label="Bank" />
-      <el-table-column prop="account_name" label="Account Name" />
-      <el-table-column prop="account_number" label="Account Number" />
+      <el-table-column fixed prop="course_name" label="Course Name" />
+      <el-table-column prop="price" label="Price" />
+      <el-table-column prop="course_content" label="Course Content" />
       <el-table-column fixed="right" label="Operations">
         <template #default>
           <el-button
             link
             type="primary"
             size="small"
-            @click="showPaymentDialog = true"
+            @click="showCourseDialog = true"
             >Edit</el-button
           >
           <el-button link type="danger" size="small" @click="deleteHandler">
@@ -76,7 +76,7 @@ const deleteHandler = () => {
       <el-pagination background layout="prev, pager, next" :total="1000" />
     </div>
   </el-card>
-  <PaymentMethodDialog
-    :open="showPaymentDialog"
-    @dialog-closed="() => (showPaymentDialog = false)" />
+  <CourseDialog
+    :open="showCourseDialog"
+    @dialog-closed="() => (showCourseDialog = false)" />
 </template>

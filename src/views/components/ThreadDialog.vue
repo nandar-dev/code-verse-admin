@@ -1,5 +1,6 @@
 <script setup>
 import { ref, watch, defineEmits, defineProps } from "vue";
+import { Icon } from "@iconify/vue";
 
 const props = defineProps({
   open: {
@@ -12,29 +13,6 @@ const emit = defineEmits(["dialog-closed"]);
 
 const dialogVisible = ref(props.open);
 
-const options = [
-  {
-    value: "kbz",
-    label: "KBZ Bank",
-  },
-  {
-    value: "cb",
-    label: "CB Bank",
-  },
-  {
-    value: "aya",
-    label: "AYA Bank",
-  },
-  {
-    value: "yoma",
-    label: "Yoma Bank",
-  },
-  {
-    value: "uab",
-    label: "UAB Bank",
-  },
-];
-
 watch(
   () => props.open,
   (newVal) => {
@@ -43,13 +21,14 @@ watch(
 );
 
 const closeDialog = () => {
+  dialogVisible.value = false;
   emit("dialog-closed");
 };
 
 const form = ref({
-  bank_name: "",
-  account_name: "",
-  account_number: "",
+  title: "",
+  description: "",
+  image_url: "",
 });
 
 const formRef = ref(null);
@@ -60,25 +39,41 @@ const formRef = ref(null);
     :close-on-click-modal="false"
     @closed="closeDialog"
     v-model="dialogVisible"
-    title="Add Payment Method"
+    title="Add Thread"
     width="500">
-    <el-form label-position="top" class="form" :model="form" ref="formRef">
-      <el-form-item label="Bank Name">
-        <el-select v-model="form.bank_name" placeholder="Select Bank">
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value" />
-        </el-select>
+    <el-form
+      style="max-height: 500px; overflow-y: auto; overflow-x: hidden"
+      label-position="top"
+      class="form"
+      :model="form"
+      ref="formRef">
+      <el-upload
+        v-model:file-list="fileList"
+        class="upload-demo"
+        action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15">
+        <el-button>
+          <el-icon><Icon icon="mdi:image" /></el-icon>
+          <span>&nbsp;Attach Images</span>
+        </el-button>
+
+        <template #tip>
+          <div class="el-upload__tip">
+            jpg/png files with a size less than 500KB.
+          </div>
+        </template>
+      </el-upload>
+
+      <el-form-item label="Title">
+        <el-input v-model="form.title"></el-input>
       </el-form-item>
-      <el-form-item label="Account Name">
-        <el-input v-model="form.account_name" placeholder="Enter account name"></el-input>
-      </el-form-item>
-      <el-form-item label="Account Number">
-        <el-input v-model="form.account_number" placeholder="Enter account number"></el-input>
+      <el-form-item label="Description">
+        <el-input
+          type="textarea"
+          v-model="form.description"
+          :autosize="{ minRows: 5 }"></el-input>
       </el-form-item>
     </el-form>
+
     <template #footer>
       <div class="dialog-footer">
         <el-button style="width: 100px" @click="closeDialog">Cancel</el-button>
