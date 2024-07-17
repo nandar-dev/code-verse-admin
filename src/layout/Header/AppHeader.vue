@@ -56,7 +56,7 @@ onUnmounted(() => {
           </div>
         </div>
 
-        <div class="avatar-menu">
+        <div class="action-menu">
           <div @click="showProfileDialog = true" class="menu-item">
             <Icon
               class="icon"
@@ -75,7 +75,9 @@ onUnmounted(() => {
       </template>
     </el-popover>
   </div>
-  <ProfileDialog :open="showProfileDialog"  @dialog-closed="showProfileDialog = false"/>
+  <ProfileDialog
+    :open="showProfileDialog"
+    @dialog-closed="showProfileDialog = false" />
 </template>
 
 <style lang="scss" scoped>
@@ -87,7 +89,7 @@ onUnmounted(() => {
   justify-content: space-between;
   padding: 0 10px;
   z-index: 10;
-    .burger-menu {
+  .burger-menu {
     cursor: pointer;
   }
 }
@@ -104,32 +106,6 @@ onUnmounted(() => {
     color: $mainGrey;
   }
 }
-
-.avatar-menu {
-  margin-top: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  .menu-item {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    cursor: pointer;
-    .icon {
-      color: $mainGrey;
-    }
-  }
-
-  .menu-item:last-child {
-    p {
-      color: $danger;
-    }
-    .icon {
-      color: $danger;
-    }
-  }
-}
-
 .el-divider--horizontal {
   margin: 0px 0 !important;
 }

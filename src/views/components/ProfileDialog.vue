@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, defineEmits, defineProps } from "vue";
+import { ref, watch, defineEmits, } from "vue";
 import { Plus } from "@element-plus/icons-vue";
 
 const props = defineProps({

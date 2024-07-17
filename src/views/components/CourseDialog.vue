@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, defineEmits, defineProps } from "vue";
+import { ref, watch, defineEmits, } from "vue";
 import { Plus } from "@element-plus/icons-vue";
 
 const activeCollapse = ref("1");
@@ -162,7 +162,7 @@ const formContentRef = ref(null);
 
           <el-row :gutter="24">
             <el-col :span="3">
-              <el-form-item label="Intro Video">
+              <el-form-item label="Video">
                 <el-upload
                   :show-file-list="false"
                   action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"

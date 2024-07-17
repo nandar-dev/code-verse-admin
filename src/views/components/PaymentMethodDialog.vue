@@ -1,5 +1,6 @@
 <script setup>
-import { ref, watch, defineEmits, defineProps } from "vue";
+import { ref, watch, defineEmits } from "vue";
+import { paymentOptions } from "@/utils/index";
 
 const props = defineProps({
   open: {
@@ -11,29 +12,6 @@ const props = defineProps({
 const emit = defineEmits(["dialog-closed"]);
 
 const dialogVisible = ref(props.open);
-
-const options = [
-  {
-    value: "kbz",
-    label: "KBZ Bank",
-  },
-  {
-    value: "cb",
-    label: "CB Bank",
-  },
-  {
-    value: "aya",
-    label: "AYA Bank",
-  },
-  {
-    value: "yoma",
-    label: "Yoma Bank",
-  },
-  {
-    value: "uab",
-    label: "UAB Bank",
-  },
-];
 
 watch(
   () => props.open,
@@ -66,17 +44,21 @@ const formRef = ref(null);
       <el-form-item label="Bank Name">
         <el-select v-model="form.bank_name" placeholder="Select Bank">
           <el-option
-            v-for="item in options"
+            v-for="item in paymentOptions"
             :key="item.value"
             :label="item.label"
             :value="item.value" />
         </el-select>
       </el-form-item>
       <el-form-item label="Account Name">
-        <el-input v-model="form.account_name" placeholder="Enter account name"></el-input>
+        <el-input
+          v-model="form.account_name"
+          placeholder="Enter account name"></el-input>
       </el-form-item>
       <el-form-item label="Account Number">
-        <el-input v-model="form.account_number" placeholder="Enter account number"></el-input>
+        <el-input
+          v-model="form.account_number"
+          placeholder="Enter account number"></el-input>
       </el-form-item>
     </el-form>
     <template #footer>

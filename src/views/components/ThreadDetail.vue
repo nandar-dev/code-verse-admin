@@ -2,11 +2,13 @@
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { Icon } from "@iconify/vue";
+import { MoreFilled } from "@element-plus/icons-vue";
+import { ElMessage, ElMessageBox } from "element-plus";
 
 const route = useRoute();
 const thread = ref({});
 const newReply = ref("");
-
+const showEditReplyDialog = ref(false);
 onMounted(() => {
   const threadId = route.params.id;
   thread.value = {
@@ -69,6 +71,20 @@ const voteReply = (replyId, upOrDown) => {
     }
   }
 };
+
+const deleteHandler = () => {
+  ElMessageBox.confirm("Are you sure want to delete?", "Delete Thread!", {
+    confirmButtonText: "OK",
+    cancelButtonText: "Cancel",
+    type: "warning",
+    callback: (action) => {
+      ElMessage({
+        type: "info",
+        message: `action: ${action}`,
+      });
+    },
+  });
+};
 </script>
 
 <template>
@@ -82,7 +98,44 @@ const voteReply = (replyId, upOrDown) => {
   <br />
   <h3>Replies</h3>
   <div v-for="reply in thread.replies" :key="reply.id" class="reply">
-    <p>{{ reply.content }}</p>
+    <div style="position: absolute; top: 10px; right: 10px">
+      <el-popover placement="bottom" :width="200" trigger="click">
+        <template #reference>
+          <el-icon><MoreFilled /></el-icon>
+        </template>
+
+        <div>
+          <div class="action-menu">
+            <div @click="showEditReplyDialog = true" class="menu-item">
+              <Icon
+                class="icon"
+                icon="mdi:post-it-note-edit-outline"
+                width="23"
+                height="23" />
+              <p>Edit</p>
+            </div>
+            <el-divider />
+
+            <div @click="deleteHandler()" class="menu-item">
+              <Icon
+                class="icon"
+                icon="material-symbols:delete"
+                width="23"
+                height="23" />
+              <p>Delete</p>
+            </div>
+          </div>
+        </div>
+      </el-popover>
+    </div>
+    <p>
+      {{ reply.content }} Lorem ipsum dolor sit amet consectetur adipisicing
+      elit. Assumenda dolorem impedit nobis architecto nesciunt perferendis quos
+      ipsum fugiat d tempore ipsam ex magnam, nam laborum dolore fugit molestiae
+      unde placeat, doloremque est ducimus nihil maxime nisi recusandae. Aliquid
+      harum labore aspernatur, deleniti culpa, vitae aliquam natus sequi ipsam
+      voluptate provident officiis?
+    </p>
 
     <div class="vote-container">
       <div class="up vote-button" @click="voteReply(reply.id, 'up')">
@@ -114,6 +167,24 @@ const voteReply = (replyId, upOrDown) => {
     placeholder="Add a reply"
     class="reply-input" />
   <el-button type="primary" @click="addReply">Reply</el-button>
+
+  <el-dialog
+    title="Edit Reply"
+    align-center
+    v-model="showEditReplyDialog"
+    width="700">
+    <div style="display: flex; justify-content: center; margin-top: 10px">
+      <el-input type="textarea" placeholder="Edit a reply" />
+    </div>
+    <template #footer>
+      <div class="dialog-footer">
+        <el-button @click="showEditReplyDialog = false">Cancel</el-button>
+        <el-button type="primary" @click="showEditReplyDialog = false">
+          Confirm
+        </el-button>
+      </div>
+    </template>
+  </el-dialog>
 </template>
 
 <style lang="scss" scoped>
@@ -123,10 +194,15 @@ img {
   border-radius: 3px;
 }
 .reply {
+  position: relative;
   margin-top: 10px;
   padding: 10px;
   border: 1px solid $mainBorderColor;
   border-radius: 3px;
+
+  p {
+    padding-right: 30px;
+  }
 }
 
 .reply-input {
